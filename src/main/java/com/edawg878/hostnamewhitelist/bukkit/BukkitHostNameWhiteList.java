@@ -4,11 +4,9 @@ import com.edawg878.hostnamewhitelist.common.Util;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
-import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -52,13 +50,6 @@ public class BukkitHostNameWhiteList extends JavaPlugin implements Listener {
         }
         if (isBlocked(hostname)) {
             event.disallow(Result.KICK_OTHER, warning);
-        }
-    }
-
-    @EventHandler(priority = EventPriority.HIGH)
-    public void onPing(ServerListPingEvent event) {
-        if (isBlocked(event.getAddress().getHostName())) {
-            event.setMotd(warning);
         }
     }
 
